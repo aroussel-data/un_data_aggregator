@@ -1,23 +1,21 @@
 version: '3.7'
 services:
-    postgres:
-      image: postgres:9.6
+    mongo:
+      image: mongo
       environment:
-        - POSTGRES_USER=admin
-        - POSTGRES_PASSWORD=admin
-        - POSTGRES_DB=admin
-      logging:
-        options:
-            max-size: 10m
-            max-file: "3"
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: example
     worker:
       depends_on:
-        - postgres
+        - mongo
       build:
         dockerfile: Dockerfile
         context: .
-      command: tail -F anything
       logging:
         options:
           max-size: 10m
           max-file: "3"
+      environment:
+        MONGODB_ADMINUSERNAME: root
+        MONGODB_ADMINPASSWORD: example
+        MONGODB_URL: mongodb://root:example@mongo:27017/
