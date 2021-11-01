@@ -27,16 +27,16 @@ class Fetcher:
             logging.info(f"{self.filepath} already in data folder")
 
     def _load_file_into_db(self):
-        client = MongoClient(os.environ.get('MONGODB_URL'))
-        db = client['countries_db']
-        collection_conflict = db['conflict']
+        client = MongoClient(os.environ.get("MONGODB_URL"))
+        db = client["countries_db"]
+        collection_conflict = db["conflict"]
 
         with open(self.filepath) as f:
             file_data = json.load(f)
 
         collection_conflict.insert_many(file_data["data"])
         client.close()
-        logging.info(f"data loaded into DB")
+        logging.info("data loaded into DB")
 
     def run(self):
         logging.info(f"downloading files from {self.target_url}")
