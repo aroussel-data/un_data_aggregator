@@ -11,11 +11,14 @@ SQLAlchemy = "*"
 PyMySQL = "*"
 wget = "*"
 pytz = "*"
+pymongo = "*"
 
 [dev-packages]
 flake8 = "*"
 isort = "*"
-black = {git = "git://github.com/psf/black"}
 
 [requires]
 python_version = "3.8"
+
+[dev-packages.black]
+git = "git://github.com/psf/black"

@@ -1,3 +1,4 @@
 *.csv
 *.ini
+!acquire_data/config/settings_example.ini
 acquire_data/data/
